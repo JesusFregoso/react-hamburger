@@ -3,6 +3,8 @@ import classes from './App.css';
 import Person from '../components/Persons/Person/Person';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Aux from '../hoc/Auxiliar';
+import withClass from '../hoc/withClass';
 
 class App extends Component {
   state = {
@@ -64,16 +66,16 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
-        <Cockpit 
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonHandler}/>
-        {persons}
-      </div>
+        <Aux>
+          <Cockpit 
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonHandler}/>
+          {persons}
+        </Aux>
     );
     // return React.createElement('div',{className:'App'},React.createElement('h1',null,'Primer Elemento Con React'))
   }
 }
 
-export default App;
+export default withClass(App,classes.App);
